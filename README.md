@@ -1,4 +1,4 @@
-# Sistema de Estoque (LIFO)
+# Sistema de Estoque (LIFO) - Visual para Windows
 
 Sistema de estoque em Python com persistência em SQLite para controlar:
 
@@ -13,31 +13,28 @@ Sistema de estoque em Python com persistência em SQLite para controlar:
 ## Requisitos
 
 - Python 3.10+
+- Windows (para uso com `start.bat`)
 
-## Como executar
+## Iniciar no Windows (visual)
 
-Use o módulo de CLI:
+1. Dê duplo clique no arquivo `start.bat`.
+2. O sistema vai subir em `http://127.0.0.1:8000`.
+3. A tela visual abre no navegador para você operar cadastros, entradas e saídas.
+
+> O `start.bat` cria automaticamente `.venv` na primeira execução.
+
+## Rodar manualmente
+
+```bash
+PYTHONPATH=src python -m estoquesistema.webapp
+```
+
+## CLI (opcional)
+
+Também existe modo de linha de comando:
 
 ```bash
 PYTHONPATH=src python -m estoquesistema.cli --help
-```
-
-### Exemplo rápido
-
-```bash
-PYTHONPATH=src python -m estoquesistema.cli nova-categoria "Resinas"
-PYTHONPATH=src python -m estoquesistema.cli novo-local "Galpão A"
-PYTHONPATH=src python -m estoquesistema.cli novo-destino "Produção Linha 1"
-PYTHONPATH=src python -m estoquesistema.cli novo-insumo "Resina PP" kg 1 --estoque-minimo 50
-
-PYTHONPATH=src python -m estoquesistema.cli entrada 1 1 100 --lote L1 --fornecedor FornecedorX
-PYTHONPATH=src python -m estoquesistema.cli entrada 1 1 40 --lote L2
-
-# Retirada LIFO (consome primeiro o lote mais novo)
-PYTHONPATH=src python -m estoquesistema.cli saida 1 60 1 --local-id 1 --observacao "Ordem de produção OP-123"
-
-PYTHONPATH=src python -m estoquesistema.cli estoque
-PYTHONPATH=src python -m estoquesistema.cli movimentos
 ```
 
 ## Testes

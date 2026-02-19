@@ -43,3 +43,16 @@ def test_nao_permita_retirada_maior_que_estoque(tmp_path):
         assert False, "Era esperado erro por estoque insuficiente"
     except ValueError as exc:
         assert "Estoque insuficiente" in str(exc)
+
+
+def test_pagina_visual_renderiza(tmp_path):
+    from estoquesistema.webapp import render_page
+
+    db_file = tmp_path / "estoque.db"
+    system = InventorySystem(db_file)
+
+    html = render_page(system, message="ok", error=False).decode("utf-8")
+
+    assert "Sistema de Estoque Visual (LIFO)" in html
+    assert "Nova categoria" in html
+    assert "Estoque atual" in html
