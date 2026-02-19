@@ -1,0 +1,8 @@
+[project]
+name = "estoquesistema"
+version = "0.1.0"
+description = "Sistema de estoque com retiradas LIFO"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
